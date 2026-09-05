@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SakhiRights — Know your rights</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="app">
+    <header>
+      <div class="brand"><span class="mark">S</span><span>SakhiRights</span></div>
+      <div class="header-actions">
+        <select aria-label="Choose language">
+          {% for lang in languages %}
+          <option>{{ lang }}</option>
+          {% endfor %}
+        </select>
+        <button class="quiet" onclick="window.scrollTo({top:document.body.scrollHeight,behavior:'smooth'})">Help</button>
+      </div>
+    </header>
+    <main>
+      <section class="hero" id="home">
+        <div>
+          <div class="eyebrow">Private · Free · Plain language</div>
+          <h1>Know your rights. Take action with confidence.</h1>
+          <p>A local-language navigator that helps you understand workplace harassment rights under the POSH Act and choose your next step.</p>
+          <button class="primary" onclick="startNavigator()">Start privately →</button>
+          <button class="secondary" onclick="document.getElementById('how').scrollIntoView({behavior:'smooth'})">How it works</button>
+        </div>
+        <div class="hero-card">
+          <h2>Your story stays yours.</h2>
+          <p>Explore your rights without creating an account. You stay in control before anything is saved or shared.</p>
+          <div class="privacy"><span>⌁</span><div><strong>Privacy-first guidance</strong>No complaint is submitted automatically. You review and explicitly consent before sharing.</div></div>
+        </div>
+      </section>
+
+      <section class="navigator" id="navigator" aria-live="polite">
+        <div class="progress"><span class="on"></span><span></span><span></span></div>
+        <div class="eyebrow">Step 1 of 3 · What happened?</div>
+        <h2 class="question">Tell us what feels closest.</h2>
+        <p class="sub">You can keep this general. No names or identifying details are needed.</p>
+        <div class="choices">
+          {% for choice in choices %}
+          <button class="choice" onclick="choose(this,'{{ choice }}')">{{ choice }}</button>
+          {% endfor %}
+        </div>
+        <div class="result" id="result">
+          <strong>Based on your answer</strong><br>
+          We can explain which POSH Act protections may apply and show internal, external, and support options.<br><br>
+          <button class="primary" onclick="alert('Prototype: rights guidance would open here.')">See my rights →</button>
+        </div>
+      </section>
+
+      <section id="how" style="padding:26px 0 14px">
+        <div class="eyebrow">How SakhiRights works</div>
+        <h2 style="font-size:34px;letter-spacing:-.05em;margin:8px 0 20px">A clear path, in your language.</h2>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px">
+          <div class="privacy"><b>01</b><div><strong>Describe</strong>Answer guided questions in everyday language.</div></div>
+          <div class="privacy"><b>02</b><div><strong>Understand</strong>See relevant rights with traceable explanations.</div></div>
+          <div class="privacy"><b>03</b><div><strong>Choose</strong>Review a draft and decide whether to share it.</div></div>
+        </div>
+      </section>
+    </main>
+    <footer>
+      <span>Built for women in SMEs, colleges, NGOs and workplaces.</span>
+      <span>Information support, not a substitute for legal advice.</span>
+    </footer>
+  </div>
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
